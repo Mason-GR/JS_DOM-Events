@@ -2,22 +2,41 @@ console.log("Script attached");
 /*----------- Exercise #1: SELECTING/MANIPULATING ELEMENTS -----------*/
 
 // Select Node #1 and change the text to: "I used the getElementById("node1") method to access this"
+document.getElementById("node1").innerText =
+  'I used the getElementById("node1") method to access this';
 
 // Select Node #2 and change the text to: "I used the getElementByClassName("node2") method to access this" */
+document.getElementsByClassName("node2")[0].textContent =
+  'I used the getElementByClassName("node2") method to access this';
 
 // Select ALL the h3 tags and change the text to: "I used the getElementByTagName("h3") method to access all of these" */
+let h3Nodes = document.getElementsByTagName("h3");
+
+for (let element of h3Nodes) {
+  element.innerText = `I used the getElementByTagName("h3") method to access all of these`;
+}
 
 /*----------- Exercise #2: CREATING/APPENDING/INSERTING ELEMENTS/OBJECTS -----------*/
 
 // TODO: Create a paragraph element using this document.createElement() and put this text inside "This node was created using the createElement() method"
+const p = document.createElement("p");
+p.textContent = "This node was created using the createElement() method";
 
 // TODO: Append the created node to the parent node using the element.appendChild() method
+const ex2Parent = document.getElementById("parent");
+
+ex2Parent.appendChild(p);
 
 // TODO: Create a <a> element using this document.createElement() and put this text inside "I am a <a> tag"
+const a = document.createElement("a");
+
+a.innerText = "I am a <a> tag";
 
 // BONUS: Add a link href to the <a>
+a.href = "https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a";
 
 // TODO: Insert the created <a> in the parent but before the <p> you just created using the element.insertBefore() method
+ex2Parent.insertBefore(a, p);
 
 /*----------- Exercise #3: REMOVING/REPLACING ELEMENTS/OBJECTS -----------*/
 
