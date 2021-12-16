@@ -41,18 +41,72 @@ ex2Parent.insertBefore(a, p);
 /*----------- Exercise #3: REMOVING/REPLACING ELEMENTS/OBJECTS -----------*/
 
 // TODO: Replace the "Child Node" with a new <p> element that reads "New Child Node"
+// BONUS - Make the red box go all the way around the perimeter of the green box
+let n1 = document.getElementById("N1");
+let exercise3 = document.getElementById("exercise-container3");
+
+let newP = document.createElement("p");
+newP.textContent = "New Child Node";
+
+exercise3.replaceChild(newP, n1);
 
 // TODO: Remove the "New Child Node"
+setTimeout(function () {
+  exercise3.removeChild(newP);
+}, 4000);
 
 /*----------- Exercise #4: ANIMATIONS ----------- */
 // TODO: Write your JavaScript here to make the red box go from left to right
-// let interval = setInterval(move, 10);
+let container = document.querySelector("#container");
+let box = document.getElementById("box");
 
-// BONUS - Make the red box go all the way around the perimeter of the green box
+let x = 0;
+let y = 0;
+let isHorizontal = true;
+let direction = 1;
+let containerEdge = container.clientWidth - box.clientWidth;
+
+let timer = setInterval(move, 50);
+
+function move() {
+  if (!x && !y) {
+    direction = 1;
+    isHorizontal = true;
+    containerEdge = container.clientWidth - box.clientWidth;
+  }
+
+  if (isHorizontal) {
+    if (x == containerEdge) {
+      isHorizontal = false;
+    } else {
+      x += direction;
+      box.style.left = x + "px";
+    }
+  } else {
+    if (y == containerEdge) {
+      isHorizontal = true;
+      direction = -1;
+      containerEdge = 0;
+    } else {
+      y += direction;
+      box.style.top = y + "px";
+    }
+  }
+}
 
 /*----------- Exercise #5: DOM EVENTS --------------*/
 
 // TODO: write a function called "show" which creates a new div with an alerting message to the user with this message
 // -> "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user"
 // This div should be a 'modal' that covers the main content on the screen
+let btn = document.getElementById("btn");
+
+btn.addEventListener("click", show);
+
+function show() {
+  alert(
+    "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user"
+  );
+}
+
 // BONUS: The modal popup should be able to be closed. Refactor for this functionality
