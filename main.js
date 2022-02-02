@@ -101,12 +101,15 @@ function move() {
 // This div should be a 'modal' that covers the main content on the screen
 let btn = document.getElementById("btn");
 
-btn.addEventListener("click", show);
+let modal = document.getElementById("modal");
 
-function show() {
-  alert(
-    "Clicking the button triggers the onclick event, which calls the JS function show()... which alerts the user"
-  );
-}
-
+btn.onclick = function show() {
+  modal.style.display = "flex";
+};
 // BONUS: The modal popup should be able to be closed. Refactor for this functionality
+
+document
+  .getElementsByClassName("btn-close")[0]
+  .addEventListener("click", function () {
+    modal.style.display = "none";
+  });
